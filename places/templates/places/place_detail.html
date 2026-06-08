@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if place %}
+        <section class="detail-layout py-4">
+            <div>
+                <img
+                        src="{{ place.image_url }}"
+                        class="detail-image"
+                        alt="{{ place.name }}"
+                />
+            </div>
+
+            <div class="detail-info">
+                <h1>{{ place.name }}</h1>
+
+                <div class="place-fields mt-4">
+                    <p>
+                        <strong>Область:</strong>
+                        {{ place.region }}
+                    </p>
+                    <p>
+                        <strong>Опис:</strong>
+                        {{ place.description }}
+                    </p>
+                    <p>
+                        <strong>Дата створення:</strong>
+                        {{ place.created_at }}
+                    </p>
+                </div>
+
+                <a href="{% url 'place_list' %}" class="btn btn-secondary mt-3">
+                    Назад до місць
+                </a>
+            </div>
+        </section>
+    {% else %}
+        <section class="content-box">
+            <h1>Місце не знайдено</h1>
+            <p>Такої сторінки не існує.</p>
+            <a href="{% url 'place_list' %}" class="btn btn-secondary">
+                Назад до місць
+            </a>
+        </section>
+    {% endif %}
+{% endblock %}

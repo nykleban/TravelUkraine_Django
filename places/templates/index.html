@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section class="home-hero row align-items-center g-4 py-4">
+        <div class="col-lg-6">
+            <p class="section-label mb-2">Подорожі Україною</p>
+            <h1 class="display-5 fw-bold mb-3">Відкривай красиві місця України</h1>
+            <p class="lead text-muted">
+                TravelUkraine збирає ідеї для мандрівок: міста, замки, гори,
+                парки та локації, які варто побачити хоча б раз.
+            </p>
+            <div class="d-flex gap-2 flex-wrap mt-4">
+                <a href="{% url 'place_list' %}" class="btn btn-primary btn-lg">
+                    Перейти до місць
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <img
+                    src="https://i.pinimg.com/originals/41/cf/86/41cf866b1315e922b3549b79c92daadc.jpg"
+                    class="img-fluid rounded hero-image"
+                    alt="Подорожі Україною"
+            />
+        </div>
+    </section>
+
+    <section id="travel-ideas" class="py-4">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="info-box h-100">
+                    <h3>Міста</h3>
+                    <p>Київ, Львів, Одеса та інші напрямки для коротких поїздок.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box h-100">
+                    <h3>Природа</h3>
+                    <p>Гори, водоспади, парки та місця для активного відпочинку.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-box h-100">
+                    <h3>Історія</h3>
+                    <p>Фортеці, старі квартали та локації з українською атмосферою.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
