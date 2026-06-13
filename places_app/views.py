@@ -1,6 +1,4 @@
-from django.db.models import Model
 from django.shortcuts import render
-
 from places_app.models import Place
 
 places_hardcoded = [
@@ -59,3 +57,28 @@ def place_list(request):
 def place_detail(request, place_id):
     place = Place.objects.get(pk=place_id)
     return render(request, 'places/place_detail.html', {'place': place})
+
+
+def search(request):
+    query = request.GET.get('q', '')
+    days = request.GET.get('days', '')
+
+    places = Place.objects.all()
+
+    if query:
+        places = places.filter(name__icontains=query)
+
+    if days.isdigit():
+        days_number = int(days)
+
+        places = places.filter(
+            ideal_days_for_rest__gte=days_number - 2,
+            ideal_days_for_rest__lte=days_number + 2,
+        )
+
+    return render(request, 'places/search.html', {
+        'places': places,
+        'query': query,
+        'days': days,
+        'is_filter_used': bool(query or days),
+    })

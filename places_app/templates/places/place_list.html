@@ -5,21 +5,7 @@
 
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
         {% for place in places %}
-            <div class="col">
-                <div class="card h-100 place-card">
-                    <img src="{{ place.image_url }}" class="card-img-top" alt="{{ place.name }}"/>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ place.name }}</h5>
-                        <p class="card-text text-muted mb-2">{{ place.region }}</p>
-                        <p class="card-text">{{ place.description }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{% url 'place_detail' place.id %}" class="btn btn-primary w-100">
-                            Детальніше
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {% include "places/_place_card.html" %}
         {% endfor %}
     </div>
 {% endblock %}

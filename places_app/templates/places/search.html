@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section class="search-section py-4">
+        <h1 class="mb-3">Пошук місця для подорожі</h1>
+        <p class="text-muted mb-4">
+            Введи назву місця або вибери кількість днів, які маєш для відпочинку.
+        </p>
+
+        <form method="get" class="row g-3 align-items-end">
+            <div class="col-md-6">
+                <label for="q" class="form-label">Назва місця</label>
+                <input
+                        type="text"
+                        id="q"
+                        name="q"
+                        class="form-control"
+                        placeholder="Наприклад: Львів"
+                        value="{{ query }}"
+                >
+            </div>
+
+            <div class="col-md-4">
+                <label for="days" class="form-label">Кількість днів</label>
+                <select id="days" name="days" class="form-select">
+                    <option value="">Будь-яка кількість</option>
+                    <option value="1" {% if days == "1" %}selected{% endif %}>1 день</option>
+                    <option value="2" {% if days == "2" %}selected{% endif %}>2 дні</option>
+                    <option value="3" {% if days == "3" %}selected{% endif %}>3 дні</option>
+                    <option value="4" {% if days == "4" %}selected{% endif %}>4 дні</option>
+                    <option value="5" {% if days == "5" %}selected{% endif %}>5 днів</option>
+                    <option value="6" {% if days == "6" %}selected{% endif %}>6 днів</option>
+                    <option value="7" {% if days == "7" %}selected{% endif %}>7 днів</option>
+                    <option value="8" {% if days == "8" %}selected{% endif %}>8 днів</option>
+                    <option value="9" {% if days == "9" %}selected{% endif %}>9 днів</option>
+                    <option value="10" {% if days == "10" %}selected{% endif %}>10 днів</option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    Знайти
+                </button>
+            </div>
+        </form>
+    </section>
+
+    {% if not is_filter_used %}
+        <div class="alert alert-info mt-4">
+            Рекомендуємо вибрати фільтри або скористатися пошуком.
+        </div>
+    {% endif %}
+
+    <section class="py-4">
+        <h2 class="mb-3">Результати</h2>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for place in places %}
+                {% include "places/_place_card.html" %}
+            {% empty %}  {# якщо нічого не видало #}
+                <p class="text-muted">За вашим запитом нічого не знайдено.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

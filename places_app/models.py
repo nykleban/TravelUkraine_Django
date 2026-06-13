@@ -7,6 +7,7 @@ class Place(models.Model):
     description = models.TextField(blank=True, null=True)
     region = models.CharField(max_length=100, blank=True)
     image_url = models.URLField(blank=True)
+    ideal_days_for_rest = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
