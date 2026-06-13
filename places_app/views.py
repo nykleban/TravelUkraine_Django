@@ -1,6 +1,9 @@
+from django.db.models import Model
 from django.shortcuts import render
 
-places = [
+from places_app.models import Place
+
+places_hardcoded = [
     {
         'id': 1,
         'name': 'Карпати',
@@ -49,15 +52,10 @@ def index(request):
 
 
 def place_list(request):
+    places = Place.objects.all()
     return render(request, 'places/place_list.html', {'places': places})
 
 
 def place_detail(request, place_id):
-    place = None
-
-    for item in places:
-        if item.get('id') == place_id:
-            place = item
-            break
-
+    place = Place.objects.get(pk=place_id)
     return render(request, 'places/place_detail.html', {'place': place})

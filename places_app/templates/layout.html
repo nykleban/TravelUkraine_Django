@@ -11,17 +11,15 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
     />
-    <link href="https://db.onlinewebfonts.com/c/a44207bfe4040f536c824dbbf82f5ed1?family=e-Ukraine+Regular"
-          rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles.css' %}"/>
     {% block styles %} {% endblock %}
 </head>
 
-
 <body>
 <nav class="navbar navbar-expand-lg site-navbar">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'index' %}">TravelUkraine
+        <a class="navbar-brand fw-bold" href="{% url 'index' %}">
+            TravelUkraine
             <img src="{% static 'storage/logo/gps_icon.png' %}" alt="" style="width: 25px;">
         </a>
         <button
