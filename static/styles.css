@@ -6,12 +6,7 @@ body {
     color: #243127;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+h1, h2, h3, h4, h5, h6,
 .navbar-brand,
 .nav-link,
 .btn,
@@ -61,8 +56,8 @@ h6,
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background: #5f3f24;
-    border-color: #5f3f24;
+    background: #5f3f24 !important;
+    border-color: #5f3f24 !important;
 }
 
 .btn-secondary {
