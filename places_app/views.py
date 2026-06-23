@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from places_app.models import Place
+from places_app.forms.place_form import PlaceForm
 
 places_hardcoded = [
     {
@@ -55,7 +56,7 @@ def place_list(request):
 
 
 def place_detail(request, place_id):
-    place = Place.objects.get(pk=place_id)
+    place = get_object_or_404(Place, pk=place_id)
     return render(request, 'places/place_detail.html', {'place': place})
 
 
@@ -82,3 +83,29 @@ def search(request):
         'days': days,
         'is_filter_used': bool(query or days),
     })
+
+
+def admin_places(request):
+    places = Place.objects.all()
+    return render(request, 'places/admin_places.html', {'places': places})
+
+
+def delete_place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+
+    if request.method == 'POST':
+        place.delete()
+
+    return redirect('admin_places')
+
+
+def create_place(request):
+    if request.method == 'POST':
+        form = PlaceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_places')
+    else:
+        form = PlaceForm()
+
+    return render(request, 'places/create_place.html', {'form': form})

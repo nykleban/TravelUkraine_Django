@@ -1,14 +1,23 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block content %}
     {% if place %}
         <section class="detail-layout py-4">
             <div>
-                <img
-                        src="{{ place.image_url }}"
-                        class="detail-image"
-                        alt="{{ place.name }}"
-                />
+                {% if place.image_url %}
+                    <img
+                            src="{{ place.image_url }}"
+                            class="detail-image"
+                            alt="{{ place.name }}"
+                    />
+                {% else %}
+                    <img
+                            src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
+                            class="detail-image"
+                            alt="{{ place.name }}"
+                    />
+                {% endif %}
             </div>
 
             <div class="detail-info">
@@ -33,9 +42,9 @@
                     </p>
                 </div>
 
-                <a href="{% url 'place_list' %}" class="btn btn-secondary mt-3">
-                    Назад до місць
-                </a>
+                <button type="button" class="btn btn-secondary mt-3" onclick="window.history.back()">
+                    Назад
+                </button>
             </div>
         </section>
     {% else %}

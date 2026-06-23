@@ -1,6 +1,16 @@
+{% load static %}
+
 <div class="col">
     <div class="card h-100 place-card">
-        <img src="{{ place.image_url }}" class="card-img-top" alt="{{ place.name }}">
+        {% if place.image_url %}
+            <img src="{{ place.image_url }}" class="card-img-top" alt="{{ place.name }}">
+        {% else %}
+            <img
+                    src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
+                    class="card-img-top"
+                    alt="{{ place.name }}"
+            >
+        {% endif %}
 
         <div class="card-body">
             <h5 class="card-title">{{ place.name }}</h5>

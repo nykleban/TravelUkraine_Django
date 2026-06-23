@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section class="py-4">
+        <h1 class="mb-4">Додати місце</h1>
+
+        <form method="post" class="content-box">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <div class="d-flex gap-2 mt-3">
+                <button type="submit" class="btn btn-primary">
+                    Зберегти
+                </button>
+
+                <a href="{% url 'admin_places' %}" class="btn btn-secondary">
+                    Назад
+                </a>
+            </div>
+        </form>
+    </section>
+{% endblock %}
