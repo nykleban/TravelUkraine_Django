@@ -22,7 +22,9 @@
             </p>
             <p class="card-text">
                 <strong>Найкращий сезон:</strong>
-                {{ place.get_best_season_display }}
+                <span class="season-badge season-{{ place.best_season }}">
+                    {{ place.get_best_season_display }}
+                </span>
             </p>
         </div>
 

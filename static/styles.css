@@ -79,6 +79,10 @@ h1, h2, h3, h4, h5, h6,
     border-color: #587852;
 }
 
+.btn i {
+    margin-right: 4px;
+}
+
 .card img {
     height: 240px;
     object-fit: cover;
@@ -218,6 +222,64 @@ h1, h2, h3, h4, h5, h6,
 
 .place-fields a {
     word-break: break-all;
+}
+
+.season-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #243127;
+    background: #e5e7eb;
+}
+
+.season-any {
+    background: #e5e7eb;
+}
+
+.season-spring {
+    background: #c8ead1;
+}
+
+.season-summer {
+    background: #ffe08a;
+}
+
+.season-autumn {
+    background: #f3c08d;
+}
+
+.season-winter {
+    background: #cfe8ff;
+}
+
+.place-form {
+    max-width: 760px;
+}
+
+.place-form p {
+    margin-bottom: 16px;
+}
+
+.place-form label {
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: #3f5f46;
+}
+
+.place-form .helptext {
+    display: block;
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.place-form .errorlist {
+    margin: 6px 0 0;
+    padding-left: 18px;
+    color: #dc3545;
 }
 
 .admin-places-table {

@@ -3,8 +3,14 @@
 
 {% block content %}
     <section class="py-4">
-        <h1 class="mb-4">Адмін панель</h1>
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+            <div>
+                <h1 class="mb-2">Адмін панель</h1>
+                <p class="text-muted mb-0">
+                    Керуйте туристичними місцями: переглядайте, редагуйте та видаляйте записи.
+                </p>
+            </div>
+
             <a href="{% url 'create_place' %}" class="btn btn-success">
                 <i class="bi bi-plus-lg"></i>
                 Додати місце
@@ -46,15 +52,21 @@
                         <td>{{ place.name }}</td>
                         <td>{{ place.region }}</td>
                         <td>{{ place.ideal_days_for_rest }} дн.</td>
-                        <td>{{ place.get_best_season_display }}</td>
+                        <td>
+                            <span class="season-badge season-{{ place.best_season }}">
+                                {{ place.get_best_season_display }}
+                            </span>
+                        </td>
                         <td>
                             <div class="d-flex justify-content-end gap-2">
 
                                 <a href="{% url 'place_detail' place.id %}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-eye"></i>
                                     Переглянути
                                 </a>
 
                                 <a href="{% url 'update_place' place.id %}" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i>
                                     Редагувати
                                 </a>
 
@@ -62,6 +74,7 @@
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger btn-sm"
                                             onclick="return confirm('Видалити це місце?')">
+                                        <i class="bi bi-trash"></i>
                                         Видалити
                                     </button>
                                 </form>
