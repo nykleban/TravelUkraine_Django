@@ -109,3 +109,17 @@ def create_place(request):
         form = PlaceForm()
 
     return render(request, 'places/create_place.html', {'form': form})
+
+
+def update_place(request, place_id):
+    place = get_object_or_404(Place, pk=place_id)
+
+    if request.method == 'POST':
+        form = PlaceForm(request.POST, instance=place)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_places')
+    else:
+        form = PlaceForm(instance=place)
+
+    return render(request, 'places/update_place.html', {'form': form,'place': place})

@@ -10,4 +10,4 @@ urlpatterns = [
     path('admin-panel/', views.admin_places, name='admin_places'),
     path('admin-panel/delete/<int:place_id>/', views.delete_place, name='delete_place'),
     path('admin-panel/create/', views.create_place, name='create_place'),
-]
+    path('admin-panel/update/<int:place_id>/', views.update_place, name='update_place'),]

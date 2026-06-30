@@ -37,6 +37,10 @@
                         {{ place.ideal_days_for_rest }} дн.
                     </p>
                     <p>
+                        <strong>Найкращий сезон:</strong>
+                        {{ place.get_best_season_display }}
+                    </p>
+                    <p>
                         <strong>Дата створення:</strong>
                         {{ place.created_at }}
                     </p>

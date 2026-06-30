@@ -30,6 +30,14 @@ h1, h2, h3, h4, h5, h6,
     color: #6f4a2b;
 }
 
+.navbar-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-left: 4px;
+    vertical-align: text-bottom;
+}
+
 .site-navbar .nav-link {
     margin-left: 10px;
     padding: 8px 14px;
@@ -121,6 +129,37 @@ h1, h2, h3, h4, h5, h6,
     max-height: 460px;
 }
 
+.home-carousel {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+}
+
+.home-carousel .carousel-item img {
+    height: 460px;
+    object-fit: cover;
+}
+
+.home-carousel .carousel-caption {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 48px 28px 28px;
+    text-align: left;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(15, 23, 42, 0.72));
+}
+
+.home-carousel .carousel-caption h2 {
+    margin-bottom: 6px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.home-carousel .carousel-caption p {
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
 .info-box,
 .content-box {
     padding: 24px;
@@ -179,6 +218,29 @@ h1, h2, h3, h4, h5, h6,
 
 .place-fields a {
     word-break: break-all;
+}
+
+.admin-places-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.admin-places-table tbody tr {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.admin-places-table tbody tr:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+    position: relative;
+    z-index: 1;
+}
+
+.admin-place-image {
+    width: 70px;
+    height: 48px;
+    object-fit: cover;
+    display: block;
 }
 
 @media (max-width: 992px) {
