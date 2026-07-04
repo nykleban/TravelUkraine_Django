@@ -125,3 +125,34 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_LOCATION = "static"
 MEDIA_LOCATION = "media"
+
+# Azure Blob Storage
+AZURE_CONTAINER_MEDIA = "media"
+AZURE_CONTAINER_STATIC = "static"
+AZURE_ACCOUNT_NAME = os.environ.get("AZURE_ACCOUNT_NAME", "travelukrainestorage")
+AZURE_ACCOUNT_KEY = os.environ.get("AZURE_ACCOUNT_KEY")
+
+if AZURE_ACCOUNT_KEY:
+    INSTALLED_APPS.append('storages')
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "account_name": AZURE_ACCOUNT_NAME,
+                "account_key": AZURE_ACCOUNT_KEY,
+                "azure_container": AZURE_CONTAINER_MEDIA,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "account_name": AZURE_ACCOUNT_NAME,
+                "account_key": AZURE_ACCOUNT_KEY,
+                "azure_container": AZURE_CONTAINER_STATIC,
+            },
+        },
+    }
+
+    MEDIA_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_CONTAINER_MEDIA}/"
+    STATIC_URL = f"https://{AZURE_ACCOUNT_NAME}.blob.core.windows.net/{AZURE_CONTAINER_STATIC}/"
