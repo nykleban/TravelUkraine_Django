@@ -7,7 +7,7 @@
             Заповніть інформацію про туристичне місце, щоб воно з'явилось у списку.
         </p>
 
-        <form method="post" class="content-box place-form">
+        <form method="post" enctype="multipart/form-data" class="content-box place-form">
             {% csrf_token %}
 
             {{ form.as_p }}

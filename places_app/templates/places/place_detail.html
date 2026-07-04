@@ -5,15 +5,15 @@
     {% if place %}
         <section class="detail-layout py-4">
             <div>
-                {% if place.image_url %}
+                {% if place.image %}
                     <img
-                            src="{{ place.image_url }}"
+                            src="{{ place.image.url }}"
                             class="detail-image"
                             alt="{{ place.name }}"
                     />
                 {% else %}
                     <img
-                            src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
+                            src="/media/no_image_dir/no_image_place.png"
                             class="detail-image"
                             alt="{{ place.name }}"
                     />

@@ -14,7 +14,7 @@ class Place(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     region = models.CharField(max_length=100, blank=True)
-    image_url = models.URLField(blank=True, max_length=500)
+    image = models.ImageField(upload_to='place_images/', null=True, blank=True)
     ideal_days_for_rest = models.PositiveIntegerField(default=1)
     
     best_season = models.CharField(max_length=20, choices=SEASON_CHOICES, default='any')

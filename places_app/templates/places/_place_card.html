@@ -2,11 +2,11 @@
 
 <div class="col">
     <div class="card h-100 place-card">
-        {% if place.image_url %}
-            <img src="{{ place.image_url }}" class="card-img-top" alt="{{ place.name }}">
+        {% if place.image %}
+            <img src="{{ place.image.url }}" class="card-img-top" alt="{{ place.name }}">
         {% else %}
             <img
-                    src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
+                    src="/media/no_image_dir/no_image_place.png"
                     class="card-img-top"
                     alt="{{ place.name }}"
             >
