@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+﻿{% extends "layout.html" %}
 {% load static %}
 
 {% block content %}
@@ -43,7 +43,7 @@
                                 />
                             {% else %}
                                 <img
-                                        src="/media/no_image_dir/no_image_place.png"
+                                        src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
                                         class="img-thumbnail admin-place-image"
                                         alt="{{ place.name }}"
                                 />
@@ -59,7 +59,6 @@
                         </td>
                         <td>
                             <div class="d-flex justify-content-end gap-2">
-
                                 <a href="{% url 'place_detail' place.id %}" class="btn btn-primary btn-sm">
                                     <i class="bi bi-eye"></i>
                                     Переглянути
@@ -72,8 +71,11 @@
 
                                 <form method="post" action="{% url 'delete_place' place.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('Видалити це місце?')">
+                                    <button
+                                            type="submit"
+                                            class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Видалити це місце?')"
+                                    >
                                         <i class="bi bi-trash"></i>
                                         Видалити
                                     </button>
@@ -92,4 +94,40 @@
             </table>
         </div>
     </section>
+
+    {% if messages %}
+        <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+            {% for msg in messages %}
+                <div
+                        class="toast align-items-center text-bg-{% if msg.tags == 'error' %}danger{% else %}success{% endif %} border-0"
+                        role="alert"
+                        aria-live="assertive"
+                        aria-atomic="true"
+                >
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            {{ msg }}
+                        </div>
+                        <button
+                                type="button"
+                                class="btn-close btn-close-white me-2 m-auto"
+                                data-bs-dismiss="toast"
+                                aria-label="Close"
+                        ></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {% if messages %}
+        <script>
+            document.querySelectorAll('.toast').forEach((toastBlock) => {
+                const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastBlock);
+                toastBootstrap.show();
+            });
+        </script>
+    {% endif %}
 {% endblock %}

@@ -1,6 +1,9 @@
-﻿from django.shortcuts import get_object_or_404, redirect, render
-from places_app.models import Place
+﻿from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect, render
+
 from places_app.forms.place_form import PlaceForm
+from places_app.models import Place
+
 
 def index(request):
     return render(request, 'index.html')
@@ -27,7 +30,6 @@ def search(request):
 
     if days.isdigit():
         days_number = int(days)
-
         places = places.filter(
             ideal_days_for_rest__gte=days_number - 2,
             ideal_days_for_rest__lte=days_number + 2,
@@ -51,6 +53,7 @@ def delete_place(request, place_id):
 
     if request.method == 'POST':
         place.delete()
+        messages.error(request, 'Місце видалено успішно!')
 
     return redirect('admin_places')
 
@@ -60,6 +63,7 @@ def create_place(request):
         form = PlaceForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Місце додано успішно!')
             return redirect('admin_places')
     else:
         form = PlaceForm()
@@ -74,9 +78,9 @@ def update_place(request, place_id):
         form = PlaceForm(request.POST, request.FILES, instance=place)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Місце оновлено успішно!')
             return redirect('admin_places')
     else:
         form = PlaceForm(instance=place)
 
-    return render(request, 'places/update_place.html', {'form': form,'place': place})
-
+    return render(request, 'places/update_place.html', {'form': form, 'place': place})
