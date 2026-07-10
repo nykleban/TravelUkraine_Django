@@ -5,10 +5,9 @@ from places_app.models import Place
 class PlaceForm(forms.ModelForm):
     class Meta:
         model = Place
-        fields = ['name', 'image', 'region', 'description', 'ideal_days_for_rest', 'best_season']
+        fields = ['name', 'region', 'description', 'ideal_days_for_rest', 'best_season']
         labels = {
             'name': 'Назва',
-            'image': 'Зображення',
             'region': 'Область',
             'description': 'Опис',
             'ideal_days_for_rest': 'Ідеальна кількість днів для відпочинку',
@@ -16,7 +15,6 @@ class PlaceForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'region': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'ideal_days_for_rest': forms.NumberInput(attrs={'class': 'form-control', 'min': 1, 'max': 30}),

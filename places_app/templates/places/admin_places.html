@@ -35,19 +35,7 @@
                     <tr class="align-middle">
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            {% if place.image %}
-                                <img
-                                        src="{{ place.image.url }}"
-                                        class="img-thumbnail admin-place-image"
-                                        alt="{{ place.name }}"
-                                />
-                            {% else %}
-                                <img
-                                        src="{% static 'storage/images/no_image_dir/no_image_place.png' %}"
-                                        class="img-thumbnail admin-place-image"
-                                        alt="{{ place.name }}"
-                                />
-                            {% endif %}
+                            <img src="{{ place.preview_image_url }}" class="img-thumbnail admin-place-image" alt="{{ place.name }}"/>
                         </td>
                         <td>{{ place.name }}</td>
                         <td>{{ place.region }}</td>

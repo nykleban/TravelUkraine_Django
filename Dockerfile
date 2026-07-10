@@ -12,4 +12,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["gunicorn", "travelukraine_django.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "mkdir -p /home/data && python manage.py migrate --noinput && gunicorn travelukraine_django.wsgi:application --bind 0.0.0.0:8000"]

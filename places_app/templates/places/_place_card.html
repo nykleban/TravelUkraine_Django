@@ -2,15 +2,7 @@
 
 <div class="col">
     <div class="card h-100 place-card">
-        {% if place.image %}
-            <img src="{{ place.image.url }}" class="card-img-top" alt="{{ place.name }}">
-        {% else %}
-            <img
-                    src="/media/no_image_dir/no_image_place.png"
-                    class="card-img-top"
-                    alt="{{ place.name }}"
-            >
-        {% endif %}
+        <img src="{{ place.preview_image_url }}" class="card-img-top" alt="{{ place.name }}">
 
         <div class="card-body">
             <h5 class="card-title">{{ place.name }}</h5>

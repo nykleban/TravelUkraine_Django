@@ -5,15 +5,45 @@
     {% if place %}
         <section class="detail-layout py-4">
             <div>
-                {% if place.image %}
-                    <img
-                            src="{{ place.image.url }}"
-                            class="detail-image"
-                            alt="{{ place.name }}"
-                    />
+                {% if gallery_image_urls %}
+                    <div id="placeGalleryCarousel" class="carousel slide place-gallery-carousel">
+                        <div class="carousel-inner">
+                            {% for image_url in gallery_image_urls %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <img
+                                            src="{{ image_url }}"
+                                            class="detail-image d-block w-100"
+                                            alt="{{ place.name }}"
+                                    />
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {% if gallery_image_urls|length > 1 %}
+                            <button
+                                    class="carousel-control-prev"
+                                    type="button"
+                                    data-bs-target="#placeGalleryCarousel"
+                                    data-bs-slide="prev"
+                            >
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Попереднє фото</span>
+                            </button>
+
+                            <button
+                                    class="carousel-control-next"
+                                    type="button"
+                                    data-bs-target="#placeGalleryCarousel"
+                                    data-bs-slide="next"
+                            >
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Наступне фото</span>
+                            </button>
+                        {% endif %}
+                    </div>
                 {% else %}
                     <img
-                            src="/media/no_image_dir/no_image_place.png"
+                            src="{{ place.preview_image_url }}"
                             class="detail-image"
                             alt="{{ place.name }}"
                     />
