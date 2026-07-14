@@ -81,6 +81,32 @@
                 <button type="button" class="btn btn-secondary mt-3" onclick="window.history.back()">
                     Назад
                 </button>
+
+                {% if is_favourite %}
+                    <a
+                            href="{% url 'delete_from_favourite' place.id %}?return_url={{ request.path }}"
+                            class="btn btn-outline-danger mt-3"
+                    >
+                        <i class="bi bi-heartbreak"></i>
+                        Прибрати з обраного
+                    </a>
+                {% else %}
+                    <a
+                            href="{% url 'add_to_favourite' place.id %}?return_url={{ request.path }}"
+                            class="btn btn-outline-primary mt-3"
+                    >
+                        <i class="bi bi-heart"></i>
+                        В обране
+                    </a>
+                {% endif %}
+
+                <a
+                        href="{% url 'update_place' place.id %}?return_url={{ request.path }}"
+                        class="btn btn-outline-secondary mt-3"
+                        title="Редагувати"
+                >
+                    <i class="bi bi-pencil"></i>
+                </a>
             </div>
         </section>
     {% else %}

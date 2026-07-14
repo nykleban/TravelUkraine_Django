@@ -1,0 +1,56 @@
+<section class="py-4">
+    <h1 class="mb-2">{{ form_title }}</h1>
+    <p class="text-muted mb-4">{{ form_description }}</p>
+
+    <form method="post" enctype="multipart/form-data" class="content-box place-form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        {% if gallery_images %}
+            <div class="mb-3">
+                <label class="form-label">Поточні фото галереї</label>
+                <div class="place-gallery-thumbs">
+                    {% for image in gallery_images %}
+                        <label class="gallery-delete-item">
+                            <img src="{{ image.url }}" alt="{{ place.name }}">
+                            <span>
+                                <input
+                                        type="checkbox"
+                                        name="delete_gallery_images"
+                                        value="{{ image.path }}"
+                                >
+                                Видалити
+                            </span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="mb-3">
+            <label for="gallery_images" class="form-label">{{ gallery_label }}</label>
+            <input
+                    type="file"
+                    id="gallery_images"
+                    name="gallery_images"
+                    class="form-control"
+                    accept="image/*"
+                    multiple
+            >
+            <div class="form-text">{{ gallery_help }}</div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-lg"></i>
+                {{ action_title }}
+            </button>
+
+            <a href="{% url 'admin_places' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i>
+                Назад
+            </a>
+        </div>
+    </form>
+</section>

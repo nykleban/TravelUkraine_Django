@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section class="py-4">
+        <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
+            <div>
+                <h1 class="mb-2">Обрані місця</h1>
+                <p class="text-muted mb-0">
+                    Зберігайте цікаві напрямки, щоб швидко повернутися до них перед подорожжю.
+                </p>
+            </div>
+
+            <a href="{% url 'place_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i>
+                До місць
+            </a>
+        </div>
+
+        {% if favourite_places %}
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for place in favourite_places %}
+                    <div class="col">
+                        <div class="card place-card h-100">
+                            <img src="{{ place.preview_image_url }}" class="card-img-top" alt="{{ place.name }}">
+
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ place.name }}</h5>
+                                <p class="text-muted mb-2">{{ place.region }}</p>
+                                <p class="card-text">{{ place.description|truncatechars:110 }}</p>
+
+                                <div class="mt-auto d-flex gap-2">
+                                    <a href="{% url 'place_detail' place.id %}" class="btn btn-primary flex-fill">
+                                        <i class="bi bi-eye"></i>
+                                        Переглянути
+                                    </a>
+
+                                    <a
+                                            href="{% url 'delete_from_favourite' place.id %}?return_url={{ request.path }}"
+                                            class="btn btn-outline-danger"
+                                            title="Прибрати з обраного"
+                                    >
+                                        <i class="bi bi-heartbreak"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="content-box text-center">
+                <h2 class="h4 mb-2">Поки немає обраних місць</h2>
+                <p class="text-muted mb-3">
+                    Відкрийте сторінку місця і додайте його в обране.
+                </p>
+                <a href="{% url 'place_list' %}" class="btn btn-primary">
+                    Перейти до місць
+                </a>
+            </div>
+        {% endif %}
+    </section>
+{% endblock %}

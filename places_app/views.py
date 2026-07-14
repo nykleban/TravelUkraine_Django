@@ -2,6 +2,7 @@
 from django.core.files.storage import default_storage
 from django.shortcuts import get_object_or_404, redirect, render
 
+from favourite_app.favourite import get_favourite_place_ids
 from places_app.forms.place_form import PlaceForm
 from places_app.models import Place
 
@@ -67,7 +68,11 @@ def place_list(request):
 
 def place_detail(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
-    return render(request, 'places/place_detail.html', {'place': place, 'gallery_image_urls': place.gallery_image_urls})
+    return render(request, 'places/place_detail.html', {
+        'place': place,
+        'gallery_image_urls': place.gallery_image_urls,
+        'is_favourite': place.id in get_favourite_place_ids(request),
+    })
 
 
 def search(request):
@@ -129,6 +134,7 @@ def create_place(request):
 
 def update_place(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
+    return_url = request.GET.get('return_url')
 
     if request.method == 'POST':
         form = PlaceForm(request.POST, request.FILES, instance=place)
@@ -147,6 +153,9 @@ def update_place(request, place_id):
                 messages.warning(request, 'Збережено тільки перші 10 фото для цього місця.')
 
             messages.success(request, 'Місце оновлено успішно!')
+            if return_url:
+                return redirect(return_url)
+
             return redirect('admin_places')
     else:
         form = PlaceForm(instance=place)

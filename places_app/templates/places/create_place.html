@@ -1,41 +1,5 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <section class="py-4">
-        <h1 class="mb-2">Додати місце</h1>
-        <p class="text-muted mb-4">
-            Заповніть інформацію про туристичне місце, щоб воно з'явилось у списку.
-        </p>
-
-        <form method="post" enctype="multipart/form-data" class="content-box place-form">
-            {% csrf_token %}
-
-            {{ form.as_p }}
-
-            <div class="mb-3">
-                <label for="gallery_images" class="form-label">Додаткові фото галереї</label>
-                <input
-                        type="file"
-                        id="gallery_images"
-                        name="gallery_images"
-                        class="form-control"
-                        accept="image/*"
-                        multiple
-                >
-                <div class="form-text">Можна додати максимум 10 фото. Перше фото галереї буде preview.</div>
-            </div>
-
-            <div class="d-flex gap-2 mt-3">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-check-lg"></i>
-                    Зберегти
-                </button>
-
-                <a href="{% url 'admin_places' %}" class="btn btn-secondary">
-                    <i class="bi bi-arrow-left"></i>
-                    Назад
-                </a>
-            </div>
-        </form>
-    </section>
+    {% include "components/place_form.html" with form_title="Додати місце" form_description="Заповніть інформацію про туристичне місце, щоб воно з'явилось у списку." gallery_label="Додаткові фото галереї" gallery_help="Можна додати максимум 10 фото. Перше фото галереї буде preview." action_title="Зберегти" %}
 {% endblock %}

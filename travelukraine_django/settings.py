@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'places_app',
+    'favourite_app',
 ]
 
 MIDDLEWARE = [
