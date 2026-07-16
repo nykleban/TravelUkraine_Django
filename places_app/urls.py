@@ -5,6 +5,7 @@ from places_app import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('places/', views.place_list, name='place_list'),
+    path('places/random/', views.random_place, name='random_place'),
     path('places/<int:place_id>/', views.place_detail, name='place_detail'),
     path('search/', views.search, name='search'),
     path('admin-panel/', views.admin_places, name='admin_places'),

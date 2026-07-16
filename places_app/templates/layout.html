@@ -56,8 +56,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'favourite_list' %}">
+                    <a class="nav-link" href="{% url 'random_place' %}">
+                        Випадкове <i class="bi bi-shuffle"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-favourite-link" href="{% url 'favourite_list' %}">
                         Обране <i class="bi bi-heart"></i>
+                        {% if favourite_count %}
+                            <span class="nav-count-badge">{{ favourite_count }}</span>
+                        {% endif %}
                     </a>
                 </li>
                 <li class="nav-item">

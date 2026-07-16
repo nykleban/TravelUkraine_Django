@@ -62,6 +62,33 @@ SEED_PLACES = [
         'best_season': 'autumn',
         'image_file': 'chernivtsi.jpg',
     },
+    {
+        'id': 7,
+        'name': 'Верховина',
+        'description': 'Гірська локація з гуцульською культурою, музеями, дерев’яними садибами та краєвидами Карпат.',
+        'region': 'Івано-Франківська область',
+        'ideal_days_for_rest': 3,
+        'best_season': 'summer',
+        'image_file': 'verkhovyna.webp',
+    },
+    {
+        'id': 8,
+        'name': 'Свидовецький хребет',
+        'description': 'Карпатський маршрут для любителів гір, панорамних полонин, туманних схилів і довгих прогулянок.',
+        'region': 'Закарпатська область',
+        'ideal_days_for_rest': 4,
+        'best_season': 'autumn',
+        'image_file': 'svydovets.jpg',
+    },
+    {
+        'id': 9,
+        'name': 'Майдан Незалежності',
+        'description': 'Відома центральна площа України з монументами, фонтанами та важливим історичним значенням.',
+        'region': 'Київ',
+        'ideal_days_for_rest': 1,
+        'best_season': 'any',
+        'image_file': 'maidan.jpg',
+    },
 ]
 
 

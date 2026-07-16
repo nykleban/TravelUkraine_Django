@@ -66,6 +66,16 @@ def place_list(request):
     return render(request, 'places/place_list.html', {'places': places})
 
 
+def random_place(request):
+    place = Place.objects.order_by('?').first()
+
+    if not place:
+        messages.warning(request, 'Поки немає місць для випадкового вибору.')
+        return redirect('place_list')
+
+    return redirect('place_detail', place_id=place.id)
+
+
 def place_detail(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     return render(request, 'places/place_detail.html', {
