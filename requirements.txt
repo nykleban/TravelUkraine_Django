@@ -4,6 +4,7 @@ Django==6.0.6
 django-storages
 gunicorn
 Pillow
+python-dotenv
 sqlparse==0.5.5
 tzdata==2026.2
 whitenoise
